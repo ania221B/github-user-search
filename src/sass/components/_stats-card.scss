@@ -1,0 +1,14 @@
+@use '../abstracts/' as *;
+
+.stats-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 1.5rem;
+  text-align: center;
+
+  @include mq(medium) {
+    text-align: left;
+  }
+  padding: 1.5rem;
+  outline: 2px dotted hotpink;
+}

@@ -1,0 +1,29 @@
+@use '../abstracts/' as *;
+
+.user-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1875rem 0;
+
+  & > * {
+    display: flex;
+    gap: 0.8125rem;
+  }
+
+  @include mq(medium) {
+    grid-template-columns: repeat(2, 1fr);
+    & > *:first-child,
+    & > *:nth-child(2) {
+      grid-column: 1;
+    }
+
+    & > *:nth-child(3),
+    & > *:nth-child(4) {
+      grid-column: 2;
+    }
+
+    & > *:nth-child(3) {
+      grid-row: 1;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@use '../abstracts/' as *;
+
+.flex-row {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}

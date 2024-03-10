@@ -1,0 +1,28 @@
+@use '../abstracts/' as *;
+
+.search-bar {
+  display: grid;
+  grid-template-columns: min-content 1fr 0fr min-content;
+  padding-block: 0.25rem;
+  padding-inline: 0.75rem 0.25rem;
+
+  outline: 2px dotted dodgerblue;
+
+  .icon {
+    align-self: center;
+  }
+
+  input {
+    background: none;
+    border: none;
+    padding-inline-start: 1rem;
+  }
+
+  .no-user {
+    align-self: center;
+  }
+
+  &.error {
+    grid-template-columns: min-content 1fr max-content min-content;
+  }
+}

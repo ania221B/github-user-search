@@ -1,0 +1,13 @@
+@use '../abstracts/' as *;
+
+.br-small {
+  border-radius: 10px;
+}
+
+.br-medium {
+  border-radius: 15px;
+}
+
+.br-circle {
+  border-radius: 50%;
+}

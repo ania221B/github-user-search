@@ -1,0 +1,22 @@
+@use '../abstracts/' as *;
+
+.user-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem 0;
+  padding: clamp(1.5rem, 1.5rem + 3vw, 3.5rem);
+  outline: 2px dotted pink;
+
+  @include mq(large) {
+    grid-template-columns: 7.3125rem 1fr;
+    gap: 2rem clamp(1.2rem, 1rem + 3vw, 2.6rem);
+
+    &__header {
+      grid-column: 1 / -1;
+    }
+
+    & > *:not(&__header) {
+      grid-column: 2;
+    }
+  }
+}

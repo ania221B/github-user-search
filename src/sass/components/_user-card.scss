@@ -5,7 +5,14 @@
   grid-template-columns: 1fr;
   gap: 2rem 0;
   padding: clamp(1.5rem, 1.5rem + 3vw, 3.5rem);
-  outline: 2px dotted pink;
+  @include get-theme() {
+    background-color: themify(profile-card-bg);
+  }
+
+  .no-info,
+  .no-info svg path {
+    opacity: 0.8;
+  }
 
   @include mq(large) {
     grid-template-columns: 7.3125rem 1fr;

@@ -9,8 +9,10 @@
   border-radius: 10px;
   padding-block: 0.8125em;
   padding-inline: 1.5em;
-  background-color: clr(primary, 400);
-  color: clr(neutral, 050);
+  @include get-theme() {
+    background-color: themify(search-btn-bg);
+    color: themify(search-btn-text);
+  }
   position: relative;
   isolation: isolate;
 
@@ -19,7 +21,10 @@
     position: absolute;
     inset: 0;
     display: block;
-    background-color: clr(primary, 300);
+    @include get-theme() {
+      background-color: themify(search-btn-hover-bg);
+      color: themify(search-btn-text);
+    }
     border-radius: inherit;
     z-index: -1;
     opacity: 0;

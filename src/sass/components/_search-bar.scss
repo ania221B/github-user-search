@@ -3,10 +3,11 @@
 .search-bar {
   display: grid;
   grid-template-columns: min-content 1fr 0fr min-content;
-  padding-block: 0.25rem;
-  padding-inline: 0.75rem 0.25rem;
-
-  outline: 2px dotted dodgerblue;
+  padding-block: 0.6rem;
+  padding-inline: 1.5rem 0.6rem;
+  @include get-theme() {
+    background-color: themify(search-bg);
+  }
 
   .icon {
     align-self: center;
@@ -16,10 +17,20 @@
     background: none;
     border: none;
     padding-inline-start: 1rem;
+    @include get-theme() {
+      color: themify(text-input-clr);
+      &::placeholder {
+        color: themify(text-clr);
+      }
+    }
   }
 
   .no-user {
     align-self: center;
+    font-weight: $fw-700;
+    @include get-theme() {
+      color: themify(error-clr);
+    }
   }
 
   &.error {

@@ -33,9 +33,23 @@
     &__bio {
       grid-column: 2 / span 2;
     }
+  }
 
-    // & > *:not(&__img, &__date) {
-    //   grid-column: 2;
-    // }
+  &__title {
+    @include get-theme() {
+      color: themify(text-accent-clr);
+    }
+  }
+
+  &__name {
+    @include get-theme() {
+      color: themify(accent-clr);
+    }
+  }
+
+  &__date {
+    @include get-theme() {
+      color: themify(date-clr);
+    }
   }
 }

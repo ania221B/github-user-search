@@ -10,5 +10,13 @@
     text-align: left;
   }
   padding: 1.5rem;
-  outline: 2px dotted hotpink;
+  @include get-theme() {
+    background-color: themify(stats-card-bg);
+  }
+
+  dd {
+    @include get-theme() {
+      color: themify(text-accent-clr);
+    }
+  }
 }

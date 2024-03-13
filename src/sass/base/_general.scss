@@ -1,5 +1,9 @@
 @use '../abstracts/' as *;
 
+:root {
+  color-scheme: light dark;
+}
+
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
@@ -7,6 +11,9 @@ body {
   font-family: $ff-primary;
   font-weight: $fw-400;
   font-size: fs(400);
-  background-color: clr(neutral, 800);
-  color: clr(neutral, 100);
+}
+
+@include get-body-theme() {
+  background-color: themify(main-bg);
+  color: themify(text-clr);
 }

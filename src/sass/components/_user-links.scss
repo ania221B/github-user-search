@@ -26,4 +26,23 @@
       grid-row: 1;
     }
   }
+
+  svg path {
+    @include get-theme() {
+      fill: themify(text-clr);
+    }
+  }
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: currentColor;
+    position: relative;
+    isolation: isolate;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
 }

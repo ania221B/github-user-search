@@ -9,23 +9,36 @@
     background-color: themify(search-bg);
   }
 
+  &:focus-within {
+    @include get-theme() {
+      outline: 2px dotted themify(accent-clr);
+    }
+  }
+
   .icon {
     align-self: center;
   }
 
   input {
+    max-width: 100%;
     background: none;
     border: none;
-    padding-inline-start: 1rem;
+    padding-inline: 1em;
     @include get-theme() {
       color: themify(text-input-clr);
       &::placeholder {
         color: themify(text-clr);
       }
     }
+
+    &:focus {
+      outline: none;
+    }
   }
 
   .no-user {
+    width: fit-content;
+    margin-inline: 1.25em;
     align-self: center;
     font-weight: $fw-700;
     @include get-theme() {
@@ -34,6 +47,6 @@
   }
 
   &.error {
-    grid-template-columns: min-content 1fr max-content min-content;
+    grid-template-columns: min-content 1fr minmax(auto, max-content) min-content;
   }
 }

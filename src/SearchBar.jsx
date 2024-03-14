@@ -30,7 +30,7 @@ function SearchBar () {
           placeholder='Search GitHub username...'
           onChange={e => setSearchedUser(e.target.value)}
         />
-        {isError && <div className='no-user'>No Results</div>}
+        {isError && <div className='no-user'>No results</div>}
         <button type='submit' className='button search-button'>
           Search
         </button>

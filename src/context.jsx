@@ -5,10 +5,14 @@ import axios from 'axios'
 const AppGlobalContext = createContext()
 
 function AppContext ({ children }) {
+  const [isDarkMode, setIsDarkMode] = useState(
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  )
   const [isError, setIsError] = useState(false)
   const [userName, setUserName] = useState('octocat')
   const [searchedUser, setSearchedUser] = useState('')
   const [user, setUser] = useState({})
+
   const url = 'https://api.github.com'
 
   function formatDate (date) {
@@ -64,6 +68,42 @@ function AppContext ({ children }) {
     }
   }
 
+  function enableDarkMode () {
+    setIsDarkMode(true)
+    document.body.classList.remove('theme-light')
+    document.body.classList.add('theme-dark')
+    window.localStorage.setItem('theme', 'dark')
+  }
+
+  function enableLightMode () {
+    setIsDarkMode(false)
+    document.body.classList.remove('theme-dark')
+    document.body.classList.add('theme-light')
+    window.localStorage.setItem('theme', 'light')
+  }
+
+  function setPreferredTheme () {
+    const currentTheme = window.localStorage.getItem('theme')
+
+    if (!currentTheme) {
+      if (isDarkMode) {
+        enableDarkMode()
+      } else {
+        enableLightMode()
+      }
+    } else if (currentTheme === 'dark') {
+      enableDarkMode()
+    } else {
+      enableLightMode()
+    }
+  }
+
+  function toggleTheme () {
+    document.body.classList.contains('theme-dark')
+      ? enableLightMode()
+      : enableDarkMode()
+  }
+
   return (
     <AppGlobalContext.Provider
       value={{
@@ -75,7 +115,10 @@ function AppContext ({ children }) {
         setSearchedUser,
         user,
         setUser,
-        getUser
+        getUser,
+        setIsDarkMode,
+        setPreferredTheme,
+        toggleTheme
       }}
     >
       {children}

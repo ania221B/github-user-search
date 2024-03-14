@@ -5,15 +5,16 @@ import User from './User'
 import { useAppGlobalContext } from './context'
 
 function App () {
-  const { userName, user, getUser } = useAppGlobalContext()
+  const { userName, user, getUser, setPreferredTheme } = useAppGlobalContext()
 
   useEffect(() => {
+    setPreferredTheme()
     getUser(userName)
   }, [])
   return (
     <main>
       <section className='section'>
-        <div className='container'>
+        <div className='container flow'>
           <Header></Header>
           <SearchBar></SearchBar>
           <User user={user}></User>

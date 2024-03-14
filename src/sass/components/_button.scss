@@ -4,7 +4,31 @@
   background: none;
   border: none;
   cursor: pointer;
+}
 
+.toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 1.25em;
+  @include get-theme() {
+    color: themify(toggle-clr);
+  }
+  font-size: fs(300);
+  &:hover,
+  &:focus {
+    @include get-theme() {
+      color: themify(toggle-hover-clr);
+    }
+  }
+  &:hover svg path,
+  &:focus svg path {
+    @include get-theme() {
+      fill: themify(toggle-hover-clr);
+    }
+  }
+}
+
+.search-button {
   font-weight: $fw-700;
   border-radius: 10px;
   padding-block: 0.8125em;

@@ -31,7 +31,7 @@ function SearchBar () {
           onChange={e => setSearchedUser(e.target.value)}
         />
         {isError && <div className='no-user'>No Results</div>}
-        <button type='submit' className='button'>
+        <button type='submit' className='button search-button'>
           Search
         </button>
       </div>

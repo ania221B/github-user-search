@@ -14,6 +14,9 @@
     color: themify(toggle-clr);
   }
   font-size: fs(300);
+  font-weight: $fw-700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
   &:hover,
   &:focus {
     @include get-theme() {

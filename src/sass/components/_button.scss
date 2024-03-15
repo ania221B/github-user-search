@@ -17,14 +17,21 @@
   font-weight: $fw-700;
   text-transform: uppercase;
   letter-spacing: 2.5px;
-  &:hover,
-  &:focus {
+  &:hover {
     @include get-theme() {
       color: themify(toggle-hover-clr);
     }
   }
+
+  &:focus-visible {
+    @include get-theme() {
+      color: themify(toggle-hover-clr);
+      outline: 2px dotted themify(toggle-hover-clr);
+      outline-offset: 0.5em;
+    }
+  }
   &:hover svg path,
-  &:focus svg path {
+  &:focus-visible svg path {
     @include get-theme() {
       fill: themify(toggle-hover-clr);
     }
@@ -58,7 +65,18 @@
     transition: opacity 300ms ease-in-out;
   }
 
-  &:hover::before {
+  &:focus {
+    @include get-theme() {
+      outline: 2px dotted themify(accent-clr);
+    }
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:hover::before,
+  &:focus::before {
     opacity: 1;
   }
 }

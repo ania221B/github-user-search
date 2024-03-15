@@ -9,7 +9,7 @@
     background-color: themify(search-bg);
   }
 
-  &:focus-within {
+  &:has(input:focus-visible) {
     @include get-theme() {
       outline: 2px dotted themify(accent-clr);
     }

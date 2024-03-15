@@ -13,7 +13,9 @@ function SearchBar () {
     >
       <div
         className={
-          isError ? `search-bar br-medium error` : `search-bar br-medium`
+          isError
+            ? `search-bar br-medium box-shadow-6 error`
+            : `search-bar br-medium box-shadow-6`
         }
       >
         <div className='icon'>

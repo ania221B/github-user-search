@@ -15,7 +15,7 @@ function User ({ user }) {
   } = user
 
   return (
-    <article className='user-card br-medium'>
+    <article className='user-card br-medium box-shadow-6'>
       <div className='user-card__header profile-card'>
         <div className='profile-card__img'>
           <img src={image} alt={name} className='br-circle' />

@@ -4,7 +4,7 @@ function Header () {
   const { toggleTheme } = useAppGlobalContext()
   return (
     <header className='primary-header flex-row space-between'>
-      <h1 className='fs-900 fw-bold'>devfinder</h1>
+      <h1 className='main-title'>devfinder</h1>
       <div className='theme-toggle'>
         {document.body.classList.contains('theme-dark') ? (
           <button

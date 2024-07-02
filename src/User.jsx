@@ -1,3 +1,5 @@
+import { useAppGlobalContext } from './context'
+
 function User ({ user }) {
   const {
     image,
@@ -13,7 +15,11 @@ function User ({ user }) {
     twitter,
     company
   } = user
+  const { isLoading } = useAppGlobalContext()
 
+  if (isLoading) {
+    return <article className='skeleton br-medium box-shadow-6'></article>
+  }
   return (
     <article className='user-card br-medium box-shadow-6'>
       <div className='user-card__header profile-card'>

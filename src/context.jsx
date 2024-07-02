@@ -8,6 +8,7 @@ function AppContext ({ children }) {
   const [isDarkMode, setIsDarkMode] = useState(
     window.matchMedia('(prefers-color-scheme: dark)').matches
   )
+  const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
   const [userName, setUserName] = useState('octocat')
   const [searchedUser, setSearchedUser] = useState('')
@@ -39,6 +40,7 @@ function AppContext ({ children }) {
   }
 
   async function getUser (searchedName) {
+    setIsLoading(true)
     setIsError(false)
     try {
       const response = await axios.get(`${url}/users/${searchedName}`, {
@@ -64,8 +66,10 @@ function AppContext ({ children }) {
         company: githubUser.company
       })
     } catch (error) {
+      setIsLoading(false)
       setIsError(true)
     }
+    setIsLoading(false)
   }
 
   function enableDarkMode () {
@@ -107,6 +111,7 @@ function AppContext ({ children }) {
   return (
     <AppGlobalContext.Provider
       value={{
+        isLoading,
         isError,
         setIsError,
         userName,

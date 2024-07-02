@@ -2,7 +2,7 @@
 
 .profile-card {
   display: grid;
-  grid-template-columns: minmax(4.375rem, min-content) 1fr;
+  grid-template-columns: minmax($profile-pic-min-size, min-content) 1fr;
   grid-auto-rows: repeat(3, min-content) 1fr;
   gap: 0 clamp(1.2rem, 1.2rem + 5vw, 2.6rem);
 
@@ -22,7 +22,7 @@
   }
 
   @include mq(medium) {
-    grid-template-columns: 7.3125rem repeat(2, 1fr);
+    grid-template-columns: $profile-pic-max-size repeat(2, 1fr);
 
     &__date {
       grid-row: 1;

@@ -7,7 +7,6 @@ import { useAppGlobalContext } from './context'
 
 function App () {
   const {
-    userName,
     user,
     getUser,
     setPreferredTheme,
@@ -18,7 +17,7 @@ function App () {
 
   useEffect(() => {
     setPreferredTheme()
-    getUser(userName)
+    getUser()
   }, [])
 
   useEffect(() => {

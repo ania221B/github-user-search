@@ -11,7 +11,6 @@ function AppContext ({ children }) {
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
   const [startId, setStartId] = useState(0)
-  const [userName, setUserName] = useState('octocat')
   const [searchedUser, setSearchedUser] = useState('')
   const [user, setUser] = useState({})
   const [suggestionList, setSuggestionList] = useState([])
@@ -20,6 +19,11 @@ function AppContext ({ children }) {
 
   const url = 'https://api.github.com'
 
+  /**
+   * Formats the date
+   * @param {String} date a date string
+   * @returns String with date in DD MMM YYYY format
+   */
   function formatDate (date) {
     const monthsInAYear = [
       { longname: 'January', shortName: 'Jan' },
@@ -43,7 +47,11 @@ function AppContext ({ children }) {
     return `${day} ${month} ${year}`
   }
 
-  async function getUser (searchedName) {
+  /**
+   * Fetches user info and displays their profile
+   * @param {String} searchedName user name entered in the search bar,
+   */
+  async function getUser (searchedName = 'octocat') {
     setIsLoading(true)
     setIsError(false)
     try {
@@ -76,6 +84,11 @@ function AppContext ({ children }) {
     setIsLoading(false)
   }
 
+  /**
+   * Gets a list of suggested users based on entered text
+   * @param {String} inputString text entered into search bar
+   * @returns a list of suggested users
+   */
   async function getUserSuggestions (inputString) {
     if (!inputString) {
       setSuggestionList([])
@@ -98,6 +111,9 @@ function AppContext ({ children }) {
     }
   }
 
+  /**
+   * Fetches more suggested items from subsequent pages of results
+   */
   async function getMoreSuggestions () {
     try {
       const response = await axios.get(
@@ -135,12 +151,20 @@ function AppContext ({ children }) {
     }
   }
 
+  /**
+   * Gets info about the user selected from suggestions list
+   * @param {Object} event event object
+   * @param {Object} item Object containing selected user info
+   */
   function selectUserItem (event, item) {
     if (event.target.closest('.suggestion-list__item')) {
       getUser(item.name ? item.name : item.login)
     }
   }
 
+  /**
+   * Enables dark mode and stores info about mode selection
+   */
   function enableDarkMode () {
     setIsDarkMode(true)
     document.body.classList.remove('theme-light')
@@ -148,6 +172,9 @@ function AppContext ({ children }) {
     window.localStorage.setItem('theme', 'dark')
   }
 
+  /**
+   * Enables light mode and stores info about mode selection
+   */
   function enableLightMode () {
     setIsDarkMode(false)
     document.body.classList.remove('theme-dark')
@@ -155,6 +182,9 @@ function AppContext ({ children }) {
     window.localStorage.setItem('theme', 'light')
   }
 
+  /**
+   * Sets the theme based on user preference
+   */
   function setPreferredTheme () {
     const currentTheme = window.localStorage.getItem('theme')
 
@@ -171,6 +201,9 @@ function AppContext ({ children }) {
     }
   }
 
+  /**
+   * Switches between available themes
+   */
   function toggleTheme () {
     document.body.classList.contains('theme-dark')
       ? enableLightMode()
@@ -183,8 +216,6 @@ function AppContext ({ children }) {
         isLoading,
         isError,
         setIsError,
-        userName,
-        setUserName,
         searchedUser,
         setSearchedUser,
         user,

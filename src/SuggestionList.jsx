@@ -33,18 +33,18 @@ function SuggestionList ({ suggestions }) {
         })}
       </ul>
       {isError ? (
-        <button type='button' className='load-btn' ref={loadBtnRef}>
+        <button type='button' className='button loading-btn' ref={loadBtnRef}>
           Cannot get results
         </button>
       ) : (
-        <button type='button' className='loading-btn' ref={loadBtnRef}>
+        <button type='button' className='button loading-btn' ref={loadBtnRef}>
           Loading more
           <span>
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              width='32'
-              height='32'
-              viewBox='0 0 24 24'
+              width='16'
+              height='16'
+              viewBox='0 0 24 12'
             >
               <circle cx='4' cy='12' r='3' fill='currentColor'>
                 <animate

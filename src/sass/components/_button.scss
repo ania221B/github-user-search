@@ -80,3 +80,13 @@
     opacity: 1;
   }
 }
+
+.loading-btn {
+  font-weight: $fw-700;
+  padding-block: 0.75em;
+  padding-inline: 1em;
+
+  display: flex;
+  gap: 0.75em;
+  align-items: center;
+}

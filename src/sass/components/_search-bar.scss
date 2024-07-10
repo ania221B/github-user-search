@@ -3,16 +3,26 @@
 .search-bar {
   display: grid;
   grid-template-columns: min-content 1fr 0fr min-content;
-  padding-block: 0.6rem;
-  padding-inline: 1.5rem 0.6rem;
+  grid-template-rows: auto 0fr;
+  padding-block: 0.6em;
+  padding-inline: 1.5em 0.6em;
   @include get-theme() {
     background-color: themify(search-bg);
   }
+  position: relative;
 
   &:has(input:focus-visible) {
     @include get-theme() {
       outline: 2px dotted themify(accent-clr);
     }
+  }
+
+  &:has(ul:not(:empty)) {
+    grid-template-rows: auto 7rem;
+  }
+
+  &:not(:has(input:focus-visible)) {
+    grid-template-rows: auto 0fr;
   }
 
   .icon {
@@ -48,5 +58,10 @@
 
   &.error {
     grid-template-columns: min-content 1fr minmax(auto, max-content) min-content;
+  }
+
+  .suggestion-list-wrapper {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 }

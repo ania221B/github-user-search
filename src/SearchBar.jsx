@@ -1,8 +1,17 @@
 import { useAppGlobalContext } from './context'
+import SuggestionList from './SuggestionList'
 
 function SearchBar () {
-  const { isError, searchedUser, setSearchedUser, getUser } =
-    useAppGlobalContext()
+  const {
+    isError,
+    searchedUser,
+    suggestionList,
+    setSearchedUser,
+    setStartId,
+    getUser,
+    getUserSuggestions,
+    inputValueRef
+  } = useAppGlobalContext()
   return (
     <form
       onSubmit={e => {
@@ -31,11 +40,18 @@ function SearchBar () {
           value={searchedUser}
           placeholder='Search GitHub username...'
           onChange={e => setSearchedUser(e.target.value)}
+          onInput={e => {
+            setSearchedUser(e.target.value)
+            getUserSuggestions(e.target.value)
+          }}
+          onBlur={() => setStartId(0)}
+          ref={inputValueRef}
         />
         {isError && <div className='no-user'>No results</div>}
         <button type='submit' className='button search-button'>
           Search
         </button>
+        <SuggestionList suggestions={suggestionList}></SuggestionList>
       </div>
     </form>
   )

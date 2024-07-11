@@ -18,7 +18,7 @@ function User ({ user }) {
   const { isLoading } = useAppGlobalContext()
 
   if (isLoading) {
-    return <article className='skeleton br-medium box-shadow-6'></article>
+    return <article className='card-skeleton br-medium box-shadow-6'></article>
   }
   return (
     <article className='user-card br-medium box-shadow-6'>

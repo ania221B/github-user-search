@@ -9,6 +9,7 @@ function AppContext ({ children }) {
     window.matchMedia('(prefers-color-scheme: dark)').matches
   )
   const [isLoading, setIsLoading] = useState(true)
+  const [isItemLoading, setIsItemLoading] = useState(true)
   const [isError, setIsError] = useState(false)
   const [startId, setStartId] = useState(0)
   const [searchedUser, setSearchedUser] = useState('')
@@ -90,6 +91,8 @@ function AppContext ({ children }) {
    * @returns a list of suggested users
    */
   async function getUserSuggestions (inputString) {
+    setIsItemLoading(true)
+    setIsError(false)
     if (!inputString) {
       setSuggestionList([])
       return
@@ -109,12 +112,15 @@ function AppContext ({ children }) {
     } catch (error) {
       setIsError(true)
     }
+    setIsItemLoading(false)
   }
 
   /**
    * Fetches more suggested items from subsequent pages of results
    */
   async function getMoreSuggestions () {
+    setIsItemLoading(true)
+    setIsError(false)
     try {
       const response = await axios.get(
         `${url}/users?per_page=100&since=${startId}`,
@@ -149,6 +155,7 @@ function AppContext ({ children }) {
     } catch (error) {
       setIsError(true)
     }
+    setIsItemLoading(false)
   }
 
   /**
@@ -214,6 +221,7 @@ function AppContext ({ children }) {
     <AppGlobalContext.Provider
       value={{
         isLoading,
+        isItemLoading,
         isError,
         setIsError,
         searchedUser,

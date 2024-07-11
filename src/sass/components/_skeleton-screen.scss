@@ -1,9 +1,9 @@
 @use '../abstracts/' as *;
 
-.skeleton {
-  --skeleton-padding: 3rem;
+.card-skeleton {
+  --skeleton-padding: 48px;
 
-  --profile-pic-size: 4rem;
+  --profile-pic-size: 64px;
   --profile-pic-position: var(--skeleton-padding) var(--skeleton-padding);
 
   --profile-pic-skeleton: radial-gradient(
@@ -12,9 +12,9 @@
     transparent 0
   );
 
-  --user-info-width: 8rem;
-  --user-info-width-small: 6rem;
-  --user-info-height: 0.5rem;
+  --user-info-width: 128px;
+  --user-info-width-small: 96px;
+  --user-info-height: 8px;
   --user-info-position-1: calc(
       (var(--skeleton-padding) * 2) + var(--profile-pic-size)
     )
@@ -35,7 +35,7 @@
   );
 
   --user-stats-width: calc(100% - (var(--skeleton-padding) * 2));
-  --user-stats-height: 5rem;
+  --user-stats-height: 80px;
   --user-stats-position: var(--skeleton-padding)
     calc(var(--profile-pic-size) + (var(--skeleton-padding) * 2.5));
   --user-stats-skeleton: linear-gradient(
@@ -44,7 +44,7 @@
   );
 
   --user-link-width: calc(100% - (var(--skeleton-padding) * 4));
-  --user-link-height: 0.5rem;
+  --user-link-height: 8px;
   --user-link-position-1: var(--skeleton-padding)
     calc(var(--profile-pic-size) + (var(--skeleton-padding) * 5));
   --user-link-position-2: var(--skeleton-padding)
@@ -58,13 +58,13 @@
     transparent
   );
 
-  --blur-width: 12rem;
-  --blur-height: 32rem;
+  --blur-width: 192px;
+  --blur-height: 512px;
   --blur-size: var(--blur-width) var(--blur-height);
 
   --animation-time: 2400ms;
 
-  min-height: 32rem;
+  min-height: 512px;
   @include get-theme() {
     background-image: linear-gradient(
         90deg,
@@ -96,12 +96,11 @@
     var(--user-link-position-3), var(--user-link-position-4);
   @include get-theme() {
     background-color: themify(profile-card-bg);
-    animation: loading var(--animation-time) infinite;
+    animation: card-loading var(--animation-time) infinite;
   }
 
   @include mq(large) {
-    --skeleton-padding: 3rem;
-    --profile-pic-size: 7rem;
+    --profile-pic-size: 112px;
 
     --user-info-position-1: calc(
         (var(--skeleton-padding) * 2) + var(--profile-pic-size)
@@ -126,7 +125,7 @@
       )
       calc(var(--profile-pic-size) + (var(--skeleton-padding) * 2.5));
 
-    --user-link-width: 13rem;
+    --user-link-width: 208px;
     --user-link-position-1: calc(
         var(--profile-pic-size) + var(--skeleton-padding)
       )
@@ -150,12 +149,77 @@
   }
 }
 
-@keyframes loading {
+.item-skeleton {
+  --skeleton-padding-block: 12px;
+  --skeleton-padding-inline: 16px;
+
+  --skeleton-padding: 32px;
+
+  --skeleton-gap: 24px;
+
+  --profile-pic-size: 40px;
+  --profile-pic-position: var(--skeleton-padding-inline)
+    var(--skeleton-padding-block);
+
+  --profile-pic-skeleton: radial-gradient(
+    circle 40px,
+    #b6bdd3 99%,
+    transparent 0
+  );
+
+  --user-name-width: 80px;
+  --user-name-height: 8px;
+  --user-name-position: calc(
+      var(--skeleton-padding-inline) + var(--profile-pic-size) +
+        var(--skeleton-gap)
+    )
+    calc((var(--profile-pic-size) / 2.5) + var(--skeleton-padding-block));
+  --user-name-skeleton: linear-gradient(
+    #b6bdd3 var(--user-name-width),
+    transparent
+  );
+
+  --blur-width: 192px;
+  --blur-height: 64px;
+  --blur-size: var(--blur-width) var(--blur-height);
+
+  --animation-time: 2400ms;
+
+  min-height: 64px;
+  @include get-theme() {
+    background-image: linear-gradient(
+        90deg,
+        rgba(themify(profile-card-bg), 0),
+        rgba(themify(profile-card-bg), 0.5),
+        rgba(themify(profile-card-bg), 0)
+      ),
+      var(--profile-pic-skeleton), var(--user-name-skeleton);
+  }
+  background-repeat: no-repeat;
+  background-size: var(--blur-width) var(--blur-height),
+    var(--profile-pic-size) var(--profile-pic-size),
+    var(--user-name-width) var(--user-name-height);
+  background-position: -150% 0, var(--profile-pic-position),
+    var(--user-name-position);
+  @include get-theme() {
+    background-color: themify(profile-card-bg);
+    animation: item-loading var(--animation-time) infinite;
+  }
+}
+
+@keyframes card-loading {
   to {
     background-position: 350% 0, var(--profile-pic-position),
       var(--user-info-position-1), var(--user-info-position-2),
       var(--user-info-position-3), var(--user-stats-position),
       var(--user-link-position-1), var(--user-link-position-2),
       var(--user-link-position-3), var(--user-link-position-4);
+  }
+}
+
+@keyframes item-loading {
+  to {
+    background-position: 350% 0, var(--profile-pic-position),
+      var(--user-name-position);
   }
 }

@@ -1,35 +1,14 @@
-import { nanoid } from 'nanoid'
 import { useAppGlobalContext } from './context'
+import SuggestionItem from './SuggestionItem'
 
 function SuggestionList ({ suggestions }) {
-  const { loadBtnRef, selectUserItem, isError } = useAppGlobalContext()
+  const { loadBtnRef, isError } = useAppGlobalContext()
 
   return (
     <div className='suggestion-list-wrapper'>
       <ul className='suggestion-list' role='list'>
         {suggestions.map(suggestion => {
-          return (
-            <li
-              className='suggestion-list__item'
-              onClick={e => selectUserItem(e, suggestion)}
-              key={nanoid()}
-              role='option'
-              aria-selected='false'
-            >
-              <article>
-                <div className='suggestion-list__item__img'>
-                  <img
-                    src={suggestion.avatar_url}
-                    alt={suggestion.name}
-                    className='br-circle'
-                  />
-                </div>
-                <h2 className='suggestion-list__item__name'>
-                  {suggestion.name ? suggestion.name : suggestion.login}
-                </h2>
-              </article>
-            </li>
-          )
+          return <SuggestionItem suggestion={suggestion}></SuggestionItem>
         })}
       </ul>
       {isError ? (

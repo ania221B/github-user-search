@@ -30,7 +30,7 @@ function App () {
         })
       },
       {
-        threshold: 0.25
+        threshold: 1
       }
     )
 

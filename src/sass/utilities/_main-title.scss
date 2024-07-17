@@ -1,7 +1,7 @@
 @use '../abstracts/' as *;
 
 .main-title {
-  font-size: fs(900);
+  font-size: fs(1000);
   font-weight: $fw-700;
   @include get-theme() {
     color: themify(text-accent-clr);

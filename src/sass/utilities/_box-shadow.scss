@@ -1,3 +1,5 @@
+@use '../abstracts/' as *;
+
 .box-shadow-1 {
   box-shadow: 0px 6px 5px rgb(0, 0, 0, 0.012), 0px 22px 18px rgb(0, 0, 0, 0.018),
     0px 100px 80px rgb(0, 0, 0, 0.03);
@@ -21,8 +23,4 @@
 .box-shadow-5 {
   box-shadow: 0px 6px 5px rgb(0, 0, 0, 0.04), 0px 22px 18px rgb(0, 0, 0, 0.06),
     0px 100px 80px rgb(0, 0, 0, 0.1);
-}
-
-.box-shadow-6 {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 }

@@ -17,6 +17,7 @@ $themes: (
     profile-card-bg: #fff,
     scrollbar-thumb-clr: #0079ff,
     scrollbar-track-clr: #f6f8ff,
+    box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.1986),
   ),
   dark: (
     main-bg: #141d2f,
@@ -36,5 +37,6 @@ $themes: (
     profile-card-bg: #1e2a47,
     scrollbar-thumb-clr: #0079ff,
     scrollbar-track-clr: #141d2f,
+    box-shadow: none,
   ),
 );

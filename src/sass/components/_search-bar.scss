@@ -4,17 +4,19 @@
   display: grid;
   grid-template-columns: min-content 1fr 0fr min-content;
   grid-template-rows: auto 0fr 0fr;
+
   padding-block: 0.6em;
   padding-inline: 1.5em 0.6em;
   @include get-theme() {
     background-color: themify(search-bg);
+    box-shadow: themify(box-shadow);
   }
   will-change: grid-template-rows;
   transition: grid-template-rows 500ms ease-in-out;
 
   &:has(input:focus-visible) {
     @include get-theme() {
-      outline: 2px dotted themify(accent-clr);
+      outline: 3px dotted themify(accent-clr);
     }
   }
 
@@ -28,17 +30,21 @@
 
   .icon {
     align-self: center;
+    transform: translateY(3px);
   }
 
   input {
     max-width: 100%;
     background: none;
     border: none;
-    padding-inline: 1em;
+    padding-inline: 0.75em;
+    font-size: fs(700);
     @include get-theme() {
       color: themify(text-input-clr);
+      caret-color: themify(accent-clr);
       &::placeholder {
         color: themify(text-clr);
+        opacity: 1;
       }
     }
 

@@ -3,12 +3,13 @@
 .stats-card {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0 1.5rem;
+  gap: 0 1.5em;
   text-align: center;
 
   @include mq(medium) {
     text-align: left;
   }
+
   padding: 1.5rem;
   @include get-theme() {
     background-color: themify(stats-card-bg);

@@ -1,82 +1,68 @@
-# About
+# Frontend Mentor - GitHub user search app solution
 
-- This template aims to speed up setting up and working on a project by providing basic code that you can reuse in your works
-- it uses Vite, React and Sass
-- The Sass files organization is based on [the 7-1 pattern](https://sass-guidelin.es/#the-7-1-pattern)
+This is a solution to the [GitHub user search app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-# How to use
+## Table of contents
 
-- Once you have the template in your repos, you can use it as a base for your project
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-## With GitHub
+## Overview
 
-1. Go to GitHub
-2. Find the repo with the template
-3. Click the **Use this template** button on the **Code** tab
-4. Enter the name for a new repo with the project you're going to work on
-5. Add the description if you want
-6. Choose if you want it to be public or private
-7. Click **Create repository from template** button
-8. A new repo based on the template will be created
+### The challenge
 
-## With degit
+Users should be able to:
 
-1. Install [degit](https://github.com/Rich-Harris/degit), if you don't have it yet
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Search for GitHub users by their username
+- See relevant user information based on their search
+- Switch between light and dark themes
+- **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS.
 
-```
-npm install -g degit
-```
+### Screenshot
 
-2. Open up the terminal and use:
+![Mobile view](/public/screenshots/GitHubUserSearch-mobile.png)
+![Tablet view](/public/screenshots/GitHubUserSearch-tablet.png)
+![Desktop view](/public/screenshots/GitHubUserSearch-desktop.png)
 
-```
-degit github-user-name/template-mame my-new-project
-```
+### Links
 
-where:
+- Solution URL: [GitHub](https://github.com/ania221B/github-user-search)
+- Live Site URL: [GitHub Pages](https://ania221b.github.io/github-user-search/)
 
-- `github-user-name` is the username you use on GitHub
-- `template-name` is the name of the template that will be base of your project (such as `website-starter-react-template`)
-- `my-new-project` name of the project you're going to work on
+## My process
 
-In my case the above could look the following:
+### Built with
 
-```
-degit ania221b/website-starter-react-template to-do-list
-```
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Sass
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- Intersection Observer API
 
-You can use the terminal in VS Code, Command Prompt, Windows Powershell or a tool like [Hyper](https://hyper.is/)
+### Continued development
 
-3. Navigate to your new project, so:
+- React
+- Intersection Observer
+- Sass
 
-```
-cd my-new-project
-```
+### Useful resources
 
-4. Perform the installation
+- [Intersection Observer using React](https://dev.to/producthackers/intersection-observer-using-react-49ko) - This helped me correctly use Intersection Observer API in React.
+- [Building Skeleton Screens with CSS Custom Properties ](https://css-tricks.com/building-skeleton-screens-css-custom-properties/) - This article explains how to build a skeleton screen using gradients and custom properties.
 
-```
-npm install
-```
+## Author
 
-5. Open your project up in VS code
-
-```
-code .
-```
-
-# Acknowledgements
-
-- This template was build as part of [Beyond CSS](https://www.beyondcss.dev/) course by [Kevin Powell](https://www.kevinpowell.co/)
-- You can find Kevin's template on [his GitHub](https://github.com/kevin-powell)
-
----
-
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Frontend Mentor - [@ania221b](https://www.frontendmentor.io/profile/ania221b)

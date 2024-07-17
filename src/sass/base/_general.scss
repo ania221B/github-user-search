@@ -5,15 +5,32 @@
 }
 
 body {
-  min-height: 100vh;
+  margin: 0;
+  min-height: 100dvh;
   text-rendering: optimizeSpeed;
   line-height: 25px;
   font-family: $ff-primary;
   font-weight: $fw-400;
   font-size: fs(400);
+
+  display: grid;
+  align-items: center;
 }
 
 @include get-body-theme() {
   background-color: themify(main-bg);
   color: themify(text-clr);
+}
+
+main {
+  width: 100%;
+  height: 100dvh;
+
+  @include mq(large) {
+    & > * {
+      height: inherit;
+      display: flex;
+      align-items: center;
+    }
+  }
 }

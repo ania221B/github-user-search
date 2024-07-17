@@ -18,15 +18,15 @@ function User ({ user }) {
   const { isLoading } = useAppGlobalContext()
 
   if (isLoading) {
-    return <article className='card-skeleton br-medium box-shadow-6'></article>
+    return <article className='card-skeleton br-medium card-shadow'></article>
   }
   return (
-    <article className='user-card br-medium box-shadow-6'>
+    <article className='user-card br-medium'>
       <div className='user-card__header profile-card'>
         <div className='profile-card__img'>
           <img src={image} alt={name} className='br-circle' />
         </div>
-        <h2 className='profile-card__title fs-800 fw-bold'>
+        <h2 className='profile-card__title fs-900 fw-bold'>
           {name ? name : username}
         </h2>
         <p className='profile-card__name'>@{username}</p>
@@ -41,18 +41,18 @@ function User ({ user }) {
       </div>
 
       <dl className='user-card__stats stats-card br-small'>
-        <div>
+        <div className='fs-200'>
           <dt>Repos</dt>
           <dd className='fs-800 fw-bold'>{repos}</dd>
         </div>
 
         <div>
-          <dt>Followers</dt>
+          <dt className='fs-200'>Followers</dt>
           <dd className='fs-800 fw-bold'>{followers}</dd>
         </div>
 
         <div>
-          <dt>Following</dt>
+          <dt className='fs-200'>Following</dt>
           <dd className='fs-800 fw-bold'>{following}</dd>
         </div>
       </dl>

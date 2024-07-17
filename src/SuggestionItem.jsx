@@ -1,11 +1,7 @@
 import { useAppGlobalContext } from './context'
 
 function SuggestionItem ({ suggestion }) {
-  const { isItemLoading, selectUserItem } = useAppGlobalContext()
-
-  if (isItemLoading) {
-    return <li className='item-skeleton br-small'></li>
-  }
+  const { selectUserItem } = useAppGlobalContext()
 
   return (
     <li

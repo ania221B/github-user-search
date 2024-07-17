@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid'
 import { useAppGlobalContext } from './context'
 
 function SuggestionItem ({ suggestion }) {
@@ -12,7 +11,6 @@ function SuggestionItem ({ suggestion }) {
     <li
       className='suggestion-list__item'
       onClick={e => selectUserItem(e, suggestion)}
-      key={nanoid()}
       role='option'
       aria-selected='false'
     >

@@ -1,5 +1,6 @@
 import { useAppGlobalContext } from './context'
 import SuggestionItem from './SuggestionItem'
+import { nanoid } from 'nanoid'
 
 function SuggestionList ({ suggestions }) {
   const { loadBtnRef, isError } = useAppGlobalContext()
@@ -8,7 +9,12 @@ function SuggestionList ({ suggestions }) {
     <div className='suggestion-list-wrapper'>
       <ul className='suggestion-list' role='list'>
         {suggestions.map(suggestion => {
-          return <SuggestionItem suggestion={suggestion}></SuggestionItem>
+          return (
+            <SuggestionItem
+              suggestion={suggestion}
+              key={nanoid()}
+            ></SuggestionItem>
+          )
         })}
       </ul>
       {isError ? (

@@ -10,6 +10,8 @@ function AppContext ({ children }) {
   )
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
+  const [isIssue, setIsIssue] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [startId, setStartId] = useState(0)
   const [searchedUser, setSearchedUser] = useState('')
   const [user, setUser] = useState({})
@@ -63,6 +65,11 @@ function AppContext ({ children }) {
       })
       const githubUser = response.data
 
+      if (!githubUser) {
+        setIsLoading(false)
+        setIsError(true)
+      }
+
       setUser({
         image: githubUser.avatar_url,
         name: githubUser.name,
@@ -80,6 +87,13 @@ function AppContext ({ children }) {
     } catch (error) {
       setIsLoading(false)
       setIsError(true)
+      if (error.response.status === 404) {
+        setErrorMessage('No results')
+      } else if (error.response.status === 403) {
+        setErrorMessage(`Limit reached. Try later`)
+      } else {
+        setErrorMessage(`There's error`)
+      }
     }
     setIsLoading(false)
   }
@@ -152,7 +166,6 @@ function AppContext ({ children }) {
     } catch (error) {
       setIsError(true)
     }
-    // setIsItemLoading(false)
   }
 
   /**
@@ -219,7 +232,11 @@ function AppContext ({ children }) {
       value={{
         isLoading,
         isError,
+        isIssue,
         setIsError,
+        setIsIssue,
+        errorMessage,
+        setErrorMessage,
         searchedUser,
         setSearchedUser,
         user,

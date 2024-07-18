@@ -4,6 +4,10 @@ import SuggestionList from './SuggestionList'
 function SearchBar () {
   const {
     isError,
+    isIssue,
+    setIsIssue,
+    errorMessage,
+    setErrorMessage,
     searchedUser,
     suggestionList,
     setSearchedUser,
@@ -12,18 +16,32 @@ function SearchBar () {
     getUserSuggestions,
     inputValueRef
   } = useAppGlobalContext()
+  const searchBarClasses = []
+  if (isError) {
+    searchBarClasses.push('error')
+  } else if (isIssue) {
+    searchBarClasses.push('error')
+  } else {
+    const indexOfError = searchBarClasses.indexOf('error')
+    searchBarClasses.splice(indexOfError - 1, 1)
+  }
   return (
     <form
       onSubmit={e => {
         e.preventDefault()
-        getUser(searchedUser)
-        setSearchedUser('')
+        if (!searchedUser) {
+          setIsIssue(true)
+          setErrorMessage('Enter a name')
+        } else {
+          setIsIssue(false)
+          setErrorMessage('')
+          getUser(searchedUser)
+          setSearchedUser('')
+        }
       }}
     >
       <div
-        className={
-          isError ? `search-bar br-medium error` : `search-bar br-medium`
-        }
+        className={`search-bar br-medium` + ' ' + searchBarClasses.join(' ')}
       >
         <div className='icon'>
           <svg height='24' width='25' xmlns='http://www.w3.org/2000/svg'>
@@ -45,7 +63,8 @@ function SearchBar () {
           onBlur={() => setStartId(0)}
           ref={inputValueRef}
         />
-        {isError && <div className='no-user'>No results</div>}
+        {isError && <div className='info'>{errorMessage}</div>}
+        {isIssue && <div className='info'>{errorMessage}</div>}
         <button type='submit' className='button search-button'>
           Search
         </button>

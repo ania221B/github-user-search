@@ -6,6 +6,10 @@
   gap: 0 1.5em;
   text-align: center;
 
+  dd {
+    grid-row: 2;
+  }
+
   @include mq(medium) {
     text-align: left;
   }

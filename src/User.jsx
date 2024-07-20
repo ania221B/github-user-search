@@ -41,20 +41,14 @@ function User ({ user }) {
       </div>
 
       <dl className='user-card__stats stats-card br-small'>
-        <div className='fs-200'>
-          <dt>Repos</dt>
-          <dd className='fs-800 fw-bold'>{repos}</dd>
-        </div>
+        <dt className='fs-200'>Repos</dt>
+        <dd className='fs-800 fw-bold'>{repos}</dd>
 
-        <div>
-          <dt className='fs-200'>Followers</dt>
-          <dd className='fs-800 fw-bold'>{followers}</dd>
-        </div>
+        <dt className='fs-200'>Followers</dt>
+        <dd className='fs-800 fw-bold'>{followers}</dd>
 
-        <div>
-          <dt className='fs-200'>Following</dt>
-          <dd className='fs-800 fw-bold'>{following}</dd>
-        </div>
+        <dt className='fs-200'>Following</dt>
+        <dd className='fs-800 fw-bold'>{following}</dd>
       </dl>
 
       <dl className='user-card__links user-links'>

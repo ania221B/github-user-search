@@ -5,14 +5,12 @@ function SearchBar () {
   const {
     isError,
     isIssue,
-    setIsIssue,
     errorMessage,
-    setErrorMessage,
     searchedUser,
     suggestionList,
     setSearchedUser,
     setStartId,
-    getUser,
+    submitSearch,
     getUserSuggestions,
     inputValueRef
   } = useAppGlobalContext()
@@ -28,16 +26,7 @@ function SearchBar () {
   return (
     <form
       onSubmit={e => {
-        e.preventDefault()
-        if (!searchedUser) {
-          setIsIssue(true)
-          setErrorMessage('Enter a name')
-        } else {
-          setIsIssue(false)
-          setErrorMessage('')
-          getUser(searchedUser)
-          setSearchedUser('')
-        }
+        submitSearch(e)
       }}
     >
       <div

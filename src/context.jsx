@@ -99,6 +99,23 @@ function AppContext ({ children }) {
   }
 
   /**
+   * Gets information about searched user
+   * @param {Object} event event object
+   */
+  function submitSearch (event) {
+    event.preventDefault()
+    if (!searchedUser) {
+      setIsIssue(true)
+      setErrorMessage('Enter a name')
+    } else {
+      setIsIssue(false)
+      setErrorMessage('')
+      getUser(searchedUser)
+      setSearchedUser('')
+    }
+  }
+
+  /**
    * Gets a list of suggested users based on entered text
    * @param {String} inputString text entered into search bar
    * @returns a list of suggested users
@@ -242,6 +259,7 @@ function AppContext ({ children }) {
         user,
         setUser,
         getUser,
+        submitSearch,
         getUserSuggestions,
         suggestionList,
         setSuggestionList,

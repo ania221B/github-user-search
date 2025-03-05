@@ -68,6 +68,7 @@ function AppContext ({ children }) {
       if (!githubUser) {
         setIsLoading(false)
         setIsError(true)
+        return
       }
 
       setUser({
@@ -92,7 +93,7 @@ function AppContext ({ children }) {
       } else if (error.response.status === 403) {
         setErrorMessage(`Limit reached. Try later`)
       } else {
-        setErrorMessage(`There's error`)
+        setErrorMessage(`There's an error`)
       }
     }
     setIsLoading(false)
@@ -147,7 +148,6 @@ function AppContext ({ children }) {
    * Fetches more suggested items from subsequent pages of results
    */
   async function getMoreSuggestions () {
-    // setIsItemLoading(true)
     setIsError(false)
     try {
       const response = await axios.get(

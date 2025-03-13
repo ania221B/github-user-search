@@ -1,12 +1,10 @@
 @use '../abstracts/' as *;
 
-@supports not selector(::-webkit-scrollbar) {
-  * {
-    scrollbar-width: thin;
-    @include get-theme() {
-      scrollbar-color: themify(scrollbar-thumb-clr) themify(scrollbar-track-clr);
-    }
-  }
+* {
+  scrollbar-width: thin;
+  @include themify(
+    (scrollbar-color, (scrollbar-thumb-clr, scrollbar-track-clr))
+  );
 }
 
 ::-webkit-scrollbar {
@@ -14,14 +12,14 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @include get-theme() {
-    background: themify(scrollbar-thumb-clr);
-  }
+  @include themify((background-color, scrollbar-thumb-clr));
   border-radius: 5px;
 }
 ::-webkit-scrollbar-track {
-  @include get-theme() {
-    background-color: themify(scrollbar-track-clr);
-  }
+  @include themify((background-color, scrollbar-track-clr));
   border-radius: 5px;
+}
+
+html {
+  scrollbar-gutter: stable;
 }

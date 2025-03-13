@@ -45,21 +45,15 @@
 
   &__title {
     align-self: end;
-    @include get-theme() {
-      color: themify(text-accent-clr);
-    }
+    @include themify((color, text-accent-clr));
   }
 
   &__name {
     align-self: center;
-    @include get-theme() {
-      color: themify(accent-clr);
-    }
+    @include themify((color, accent-clr));
   }
 
   &__date {
-    @include get-theme() {
-      color: themify(date-clr);
-    }
+    @include themify((color, date-clr));
   }
 }

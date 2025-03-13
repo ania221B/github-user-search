@@ -1,8 +1,10 @@
 @use 'sass:map';
 @use 'sass:meta';
 @use 'sass:math';
+@use 'sass:list';
 @use 'breakpoints' as *;
 @use 'themes' as *;
+@use 'functions' as *;
 
 @mixin mq($size) {
   @if (map.has-key($breakpoints, $size)) {
@@ -24,39 +26,51 @@
   }
 }
 
-@mixin get-theme() {
+@mixin themify($properties...) {
   @each $theme, $map in $themes {
-    .theme-#{$theme} & {
-      $theme-map: () !global;
-      @each $key, $submap in $map {
-        $value: map.get(map.get($themes, $theme), '#{$key}');
-        $theme-map: map.merge(
-          $theme-map,
-          (
-            $key: $value,
-          )
-        ) !global;
+    @each $property, $keys in $properties {
+      $keys-to-check: if(meta.type-of($keys) == 'list', $keys, ($keys));
+      @each $key in $keys-to-check {
+        @if not map.has-key($map, $key) {
+          @error "The key '#{$key}' is missing in the '#{$theme}' theme map.";
+        }
       }
-      @content;
-      $theme-map: null !global;
+    }
+    .theme-#{$theme} & {
+      @each $property, $keys in $properties {
+        @if meta.type-of($keys) == 'list' {
+          $values: ();
+          @each $key in $keys {
+            $values: list.append($values, map.get($map, $key));
+          }
+          #{$property}: $values;
+        } @else {
+          #{$property}: map.get($map, $keys);
+        }
+      }
     }
   }
 }
-@mixin get-body-theme() {
+@mixin themify-body($properties...) {
   @each $theme, $map in $themes {
     .theme-#{$theme} {
-      $theme-map: () !global;
-      @each $key, $submap in $map {
-        $value: map.get(map.get($themes, $theme), '#{$key}');
-        $theme-map: map.merge(
-          $theme-map,
-          (
-            $key: $value,
-          )
-        ) !global;
+      @each $property, $key in $properties {
+        #{$property}: map.get($map, $key);
       }
-      @content;
-      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin themed-gradient($key, $additional-gradients...) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      background-image: linear-gradient(
+          90deg,
+          themed-color($theme, $key, 0),
+          themed-color($theme, $key, 0.5),
+          themed-color($theme, $key, 0)
+        ),
+        $additional-gradients;
     }
   }
 }

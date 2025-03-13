@@ -5,23 +5,15 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 0 1.5em;
   text-align: center;
+  padding: 1.5rem;
+  @include themify((background-color, stats-card-bg));
 
   dd {
     grid-row: 2;
+    @include themify((color, text-accent-clr));
   }
 
   @include mq(medium) {
     text-align: left;
-  }
-
-  padding: 1.5rem;
-  @include get-theme() {
-    background-color: themify(stats-card-bg);
-  }
-
-  dd {
-    @include get-theme() {
-      color: themify(text-accent-clr);
-    }
   }
 }

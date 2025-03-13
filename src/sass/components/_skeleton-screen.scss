@@ -65,19 +65,19 @@
   --animation-time: 2400ms;
 
   min-height: 512px;
-  @include get-theme() {
-    background-image: linear-gradient(
-        90deg,
-        rgba(themify(profile-card-bg), 0),
-        rgba(themify(profile-card-bg), 0.5),
-        rgba(themify(profile-card-bg), 0)
-      ),
-      var(--profile-pic-skeleton), var(--user-info-skeleton),
-      var(--user-info-skeleton), var(--user-info-skeleton),
-      var(--user-stats-skeleton), var(--user-link-skeleton),
-      var(--user-link-skeleton), var(--user-link-skeleton),
-      var(--user-link-skeleton);
-  }
+  @include themed-gradient(
+    profile-card-bg,
+    var(--profile-pic-skeleton),
+    var(--user-info-skeleton),
+    var(--user-info-skeleton),
+    var(--user-info-skeleton),
+    var(--user-stats-skeleton),
+    var(--user-link-skeleton),
+    var(--user-link-skeleton),
+    var(--user-link-skeleton),
+    var(--user-link-skeleton)
+  );
+
   background-repeat: no-repeat;
   background-size: var(--blur-width) var(--blur-height),
     var(--profile-pic-size) var(--profile-pic-size),
@@ -94,10 +94,8 @@
     var(--user-info-position-3), var(--user-stats-position),
     var(--user-link-position-1), var(--user-link-position-2),
     var(--user-link-position-3), var(--user-link-position-4);
-  @include get-theme() {
-    background-color: themify(profile-card-bg);
-    animation: card-loading var(--animation-time) infinite;
-  }
+  @include themify((background-color, profile-card-bg));
+  animation: card-loading var(--animation-time) infinite;
 
   @include mq(large) {
     --profile-pic-size: 112px;
@@ -150,61 +148,69 @@
 }
 
 .item-skeleton {
-  --skeleton-padding-block: 12px;
-  --skeleton-padding-inline: 16px;
-
-  --skeleton-padding: 32px;
-
-  --skeleton-gap: 24px;
-
-  --profile-pic-size: 40px;
-  --profile-pic-position: var(--skeleton-padding-inline)
-    var(--skeleton-padding-block);
-
-  --profile-pic-skeleton: radial-gradient(
-    circle 40px,
-    #b6bdd3 99%,
-    transparent 0
-  );
-
-  --user-name-width: 80px;
-  --user-name-height: 8px;
-  --user-name-position: calc(
-      var(--skeleton-padding-inline) + var(--profile-pic-size) +
-        var(--skeleton-gap)
-    )
-    calc((var(--profile-pic-size) / 2.5) + var(--skeleton-padding-block));
-  --user-name-skeleton: linear-gradient(
-    #b6bdd3 var(--user-name-width),
-    transparent
-  );
-
-  --blur-width: 192px;
-  --blur-height: 64px;
-  --blur-size: var(--blur-width) var(--blur-height);
-
-  --animation-time: 2400ms;
-
-  min-height: 64px;
-  @include get-theme() {
-    background-image: linear-gradient(
-        90deg,
-        rgba(themify(profile-card-bg), 0),
-        rgba(themify(profile-card-bg), 0.5),
-        rgba(themify(profile-card-bg), 0)
-      ),
-      var(--profile-pic-skeleton), var(--user-name-skeleton);
+  padding-block: 12px;
+  padding-inline: 1rem;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  & > * {
+    background-color: #b6bdd3;
   }
-  background-repeat: no-repeat;
-  background-size: var(--blur-width) var(--blur-height),
-    var(--profile-pic-size) var(--profile-pic-size),
-    var(--user-name-width) var(--user-name-height);
-  background-position: -150% 0, var(--profile-pic-position),
-    var(--user-name-position);
-  @include get-theme() {
-    background-color: themify(profile-card-bg);
-    animation: item-loading var(--animation-time) infinite;
+  &__pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
   }
+  &__name {
+    width: 80px;
+    height: 8px;
+  }
+  // --skeleton-padding-block: 12px;
+  // --skeleton-padding-inline: 16px;
+
+  // --skeleton-padding: 32px;
+
+  // --skeleton-gap: 24px;
+
+  // --profile-pic-size: 40px;
+  // --profile-pic-position: var(--skeleton-padding-inline)
+  //   var(--skeleton-padding-block);
+
+  // --profile-pic-skeleton: radial-gradient(
+  //   circle 40px,
+  //   #b6bdd3 99%,
+  //   transparent 0
+  // );
+
+  // --user-name-width: 80px;
+  // --user-name-height: 8px;
+  // --user-name-position: calc(
+  //     var(--skeleton-padding-inline) + var(--profile-pic-size) +
+  //       var(--skeleton-gap)
+  //   )
+  //   calc((var(--profile-pic-size) / 2.5) + var(--skeleton-padding-block));
+  // --user-name-skeleton: linear-gradient(
+  //   #b6bdd3 var(--user-name-width),
+  //   transparent
+  // );
+
+  // --blur-width: 192px;
+  // --blur-height: 64px;
+  // --blur-size: var(--blur-width) var(--blur-height);
+
+  // --animation-time: 2400ms;
+
+  // min-height: 64px;
+
+  // background-repeat: no-repeat;
+  // background-size: var(--blur-width) var(--blur-height),
+  //   var(--profile-pic-size) var(--profile-pic-size),
+  //   var(--user-name-width) var(--user-name-height);
+  // background-position: -150% 0, var(--profile-pic-position),
+  //   var(--user-name-position);
+  // @include themed-gradient(profile-card-bg);
+  // @include themify((background-color, profile-card-bg));
+  // animation: item-loading var(--animation-time) infinite;
 }
 
 @keyframes card-loading {

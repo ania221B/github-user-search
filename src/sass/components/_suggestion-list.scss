@@ -12,9 +12,7 @@
   padding-inline: 0;
   border-radius: 0 0 15px 15px;
 
-  @include get-theme() {
-    background-color: themify(search-bg);
-  }
+  @include themify((background-color, search-bg));
 
   &__item {
     padding-block: 0.75em;
@@ -46,12 +44,10 @@
       content: '';
       position: absolute;
       inset: 0;
-      @include get-theme() {
-        background-color: rgba(themify(accent-clr), 0.2);
-      }
+      @include themify((background-color, suggestion-bg));
       border-radius: inherit;
       opacity: 0;
-      z-index: -1;
+      z-index: -2;
       transition: opacity 300ms ease-in-out;
     }
 

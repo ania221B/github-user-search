@@ -7,17 +7,14 @@
 
   padding-block: 0.6em;
   padding-inline: 1.5em 0.6em;
-  @include get-theme() {
-    background-color: themify(search-bg);
-    box-shadow: themify(box-shadow);
-  }
+  @include themify((background-color, search-bg), (box-shadow, box-shadow));
   will-change: grid-template-rows;
   transition: grid-template-rows 500ms ease-in-out;
 
   &:has(input:focus-visible) {
-    @include get-theme() {
-      outline: 3px dotted themify(accent-clr);
-    }
+    outline-width: 3px;
+    outline-style: dotted;
+    @include themify((outline-color, accent-clr));
   }
 
   &:has(ul:not(:empty)) {
@@ -39,13 +36,10 @@
     border: none;
     padding-inline: 0.75em;
     font-size: fs(700);
-    @include get-theme() {
-      color: themify(text-input-clr);
-      caret-color: themify(accent-clr);
-      &::placeholder {
-        color: themify(text-clr);
-        opacity: 1;
-      }
+    @include themify((color, text-input-clr), (caret-color, accent-clr));
+    &::placeholder {
+      @include themify((color, text-clr));
+      opacity: 1;
     }
 
     &:focus {
@@ -58,9 +52,7 @@
     margin-inline: 1.25em;
     align-self: center;
     font-weight: $fw-700;
-    @include get-theme() {
-      color: themify(error-clr);
-    }
+    @include themify((color, error-clr));
   }
 
   &.error {

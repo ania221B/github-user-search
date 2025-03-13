@@ -17,10 +17,7 @@ body {
   align-items: center;
 }
 
-@include get-body-theme() {
-  background-color: themify(main-bg);
-  color: themify(text-clr);
-}
+@include themify-body((background-color, main-bg), (color, text-clr));
 
 main {
   width: 100%;

@@ -2,7 +2,7 @@
 @use 'color-palette' as *;
 @use 'typography' as *;
 @use 'sizes' as *;
-@use 'mixins' as *;
+@use 'themes' as *;
 
 @function clr($color, $shade) {
   @if map.has-key($colors, $color, $shade) {
@@ -28,10 +28,15 @@
   }
 }
 
-@function themify($key) {
-  @if map.has-key($theme-map, $key) {
-    @return map.get($theme-map, $key);
+@function themed-color($theme, $key, $opacity: 1) {
+  @if map.has-key($themes, $theme) {
+    $theme-map: map.get($themes, $theme);
+    @if map.has-key($theme-map, $key) {
+      @return rgba(map.get($theme-map, $key), $opacity);
+    } @else {
+      @error "Key '#{$key}' not found in '#{$theme}' theme.";
+    }
   } @else {
-    @error '$theme-map does not have that name!';
+    @error "Theme '#{$theme}' not found in themes map.";
   }
 }

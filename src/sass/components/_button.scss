@@ -10,31 +10,27 @@
   display: flex;
   align-items: center;
   gap: 1.25em;
-  @include get-theme() {
-    color: themify(toggle-clr);
-  }
+  @include themify((color, toggle-clr));
   font-size: fs(300);
   font-weight: $fw-700;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   &:hover {
-    @include get-theme() {
-      color: themify(toggle-hover-clr);
-    }
+    @include themify((color, toggle-hover-clr));
   }
 
   &:focus-visible {
-    @include get-theme() {
-      color: themify(toggle-hover-clr);
-      outline: 2px dotted themify(toggle-hover-clr);
-      outline-offset: 0.5em;
-    }
+    @include themify(
+      (color, toggle-hover-clr),
+      (outline-color, toggle-hover-clr)
+    );
+    outline-width: 2px;
+    outline-style: dotted;
+    outline-offset: 0.5em;
   }
   &:hover svg path,
   &:focus-visible svg path {
-    @include get-theme() {
-      fill: themify(toggle-hover-clr);
-    }
+    @include themify((fill, toggle-hover-clr));
   }
 }
 
@@ -43,10 +39,7 @@
   border-radius: 10px;
   padding-block: 0.8125em;
   padding-inline: 1.5em;
-  @include get-theme() {
-    background-color: themify(search-btn-bg);
-    color: themify(search-btn-text);
-  }
+  @include themify((background-color, search-btn-bg), (color, search-btn-text));
   position: relative;
   isolation: isolate;
 
@@ -55,10 +48,10 @@
     position: absolute;
     inset: 0;
     display: block;
-    @include get-theme() {
-      background-color: themify(search-btn-hover-bg);
-      color: themify(search-btn-text);
-    }
+    @include themify(
+      (background-color, search-btn-hover-bg),
+      (color, search-btn-text)
+    );
     border-radius: inherit;
     z-index: -1;
     opacity: 0;
@@ -66,9 +59,9 @@
   }
 
   &:focus {
-    @include get-theme() {
-      outline: 2px dotted themify(accent-clr);
-    }
+    outline-width: 2px;
+    outline-style: dotted;
+    @include themify((outline-color, accent-clr));
   }
 
   &:focus:not(:focus-visible) {
@@ -89,4 +82,5 @@
   display: flex;
   gap: 0.75em;
   align-items: center;
+  @include themify((color, text-clr));
 }

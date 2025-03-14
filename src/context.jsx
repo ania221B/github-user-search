@@ -17,6 +17,7 @@ function AppContext ({ children }) {
   const [searchedUser, setSearchedUser] = useState('')
   const [user, setUser] = useState({})
   const [suggestionList, setSuggestionList] = useState([])
+  const [selectedUser, setSelectedUser] = useState(null)
   const loadBtnRef = useRef(null)
   const inputValueRef = useRef(null)
 
@@ -164,18 +165,19 @@ function AppContext ({ children }) {
         }
       )
 
-      const inputValue = inputValueRef.current.value
+      const inputValue = inputValueRef.current?.value.trim() || ''
       const additionalSuggestions = response.data.filter(user =>
         user.login.includes(inputValue)
       )
 
       if (!inputValue) {
-        setSuggestionList([])
+        setIsItemLoading(false)
+        return
       } else {
         setSuggestionList(previousList => {
-          const currentList = previousList.map(user => user.login)
+          const currentList = new Set(previousList.map(user => user.login))
           const additionsList = additionalSuggestions.filter(
-            user => !currentList.includes(user.login)
+            user => !currentList.has(user.login)
           )
 
           return [...previousList, ...additionsList]
@@ -197,6 +199,7 @@ function AppContext ({ children }) {
    */
   function selectUserItem (event, item) {
     if (event.target.closest('.suggestion-list__item')) {
+      setSelectedUser(item.login)
       getUser(item.name ? item.name : item.login)
     }
   }

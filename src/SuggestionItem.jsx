@@ -2,7 +2,7 @@ import { useAppGlobalContext } from './context'
 import ItemSkeleton from './ItemSkeleton'
 
 function SuggestionItem ({ suggestion }) {
-  const { selectUserItem, isItemLoading } = useAppGlobalContext()
+  const { selectUserItem, isItemLoading, selectedUser } = useAppGlobalContext()
 
   if (isItemLoading) {
     return <ItemSkeleton></ItemSkeleton>
@@ -13,7 +13,7 @@ function SuggestionItem ({ suggestion }) {
       className='suggestion-list__item'
       onClick={e => selectUserItem(e, suggestion)}
       role='option'
-      aria-selected='false'
+      aria-selected={selectedUser === suggestion.login}
     >
       <article>
         <div className='suggestion-list__item__img'>

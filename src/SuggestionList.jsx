@@ -1,6 +1,5 @@
 import { useAppGlobalContext } from './context'
 import SuggestionItem from './SuggestionItem'
-import { nanoid } from 'nanoid'
 
 function SuggestionList ({ suggestions }) {
   const { loadBtnRef, isError } = useAppGlobalContext()
@@ -12,7 +11,7 @@ function SuggestionList ({ suggestions }) {
           return (
             <SuggestionItem
               suggestion={suggestion}
-              key={nanoid()}
+              key={suggestion.id}
             ></SuggestionItem>
           )
         })}

@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem 0;
-  padding: clamp(1.5rem, 1.5rem + 3vw, 2.95rem);
+  padding: $card-padding;
   @include themify(
     (background-color, profile-card-bg),
     (box-shadow, box-shadow)

@@ -67,7 +67,11 @@
       background-image: linear-gradient(
           90deg,
           themed-color($theme, $key, 0),
+          themed-color($theme, $key, 0.05),
+          themed-color($theme, $key, 0.25),
           themed-color($theme, $key, 0.5),
+          themed-color($theme, $key, 0.25),
+          themed-color($theme, $key, 0.05),
           themed-color($theme, $key, 0)
         ),
         $additional-gradients;

@@ -1,3 +1,4 @@
+import CardSkeleton from './CardSkeleton'
 import { useAppGlobalContext } from './context'
 
 function User ({ user }) {
@@ -18,11 +19,12 @@ function User ({ user }) {
   const { isLoading } = useAppGlobalContext()
 
   if (isLoading) {
-    return <article className='card-skeleton br-medium card-shadow'></article>
+    return <CardSkeleton></CardSkeleton>
   }
+
   return (
     <article className='user-card br-medium'>
-      <div className='user-card__header profile-card'>
+      <header className='user-card__header profile-card'>
         <div className='profile-card__img'>
           <img src={image} alt={name} className='br-circle' />
         </div>
@@ -38,7 +40,7 @@ function User ({ user }) {
         ) : (
           <p className='profile-card__bio no-info'>This profile has no bio</p>
         )}
-      </div>
+      </header>
 
       <dl className='user-card__stats stats-card br-small'>
         <dt className='fs-200'>Repos</dt>

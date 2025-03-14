@@ -1,15 +1,11 @@
 import { useAppGlobalContext } from './context'
+import ItemSkeleton from './ItemSkeleton'
 
 function SuggestionItem ({ suggestion }) {
   const { selectUserItem, isItemLoading } = useAppGlobalContext()
 
   if (isItemLoading) {
-    return (
-      <li className='item-skeleton br-small'>
-        <div className='item-skeleton__pic'></div>
-        <div className='item-skeleton__name'></div>
-      </li>
-    )
+    return <ItemSkeleton></ItemSkeleton>
   }
 
   return (

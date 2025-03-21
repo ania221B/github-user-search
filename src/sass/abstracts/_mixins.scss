@@ -22,7 +22,7 @@
       }
     }
   } @else {
-    @error 'Provided value of #{$size} is not in the $breakponts map. Use a value from $breakpoints map or a number with a unit';
+    @error "Provided value of '#{$size}' is not in the $breakponts map. Available keys: #{map.keys($breakpoints)}. Use a value from $breakpoints map or a number with a unit";
   }
 }
 
@@ -32,7 +32,7 @@
       $keys-to-check: if(meta.type-of($keys) == 'list', $keys, ($keys));
       @each $key in $keys-to-check {
         @if not map.has-key($map, $key) {
-          @error "The key '#{$key}' is missing in the '#{$theme}' theme map.";
+          @error "The key '#{$key}' is not in the '#{$theme}' theme map. Available keys: #{map.keys($map)}.";
         }
       }
     }
@@ -51,18 +51,47 @@
     }
   }
 }
+
 @mixin themify-body($properties...) {
   @each $theme, $map in $themes {
+    @each $property, $keys in $properties {
+      $keys-to-check: if(meta.type-of($keys) == 'list', $keys, ($keys));
+      @each $key in $keys-to-check {
+        @if not map.has-key($map, $key) {
+          @error "The key '#{$key}' is not in the '#{$theme}' theme. Available keys: #{map.keys($map)}.";
+        }
+      }
+    }
     .theme-#{$theme} {
-      @each $property, $key in $properties {
-        #{$property}: map.get($map, $key);
+      @each $property, $keys in $properties {
+        @if meta.type-of($keys) == 'list' {
+          $values: ();
+          @each $key in $keys {
+            $values: list.append($values, map.get($map, $key));
+          }
+          #{$property}: $values;
+        } @else {
+          #{$property}: map.get($map, $keys);
+        }
       }
     }
   }
 }
 
 @mixin themed-gradient($key, $additional-gradients...) {
+  @if meta.type-of($themes) != 'map' {
+    @error "The variable '$themes' must be a map.";
+  }
+
   @each $theme, $map in $themes {
+    @if meta.type-of($map) != 'map' {
+      @error "The theme '#{$theme}' must be a map but got #{type-of($map)}.";
+    }
+
+    @if not map.has-key($map, $key) {
+      @error "The key '#{$key}' is not in the '#{$theme}' theme. Available keys: #{map.keys($map)}.";
+    }
+
     .theme-#{$theme} & {
       background-image: linear-gradient(
           90deg,

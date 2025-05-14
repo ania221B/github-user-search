@@ -11,8 +11,7 @@
   padding-block: 0;
   padding-inline: 0;
   border-radius: 0 0 15px 15px;
-
-  @include themify((background-color, search-bg));
+  background-color: var(--search-bg);
 
   &__item {
     padding-block: 0.75em;
@@ -44,7 +43,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      @include themify((background-color, suggestion-bg));
+      background-color: var(--suggestion-bg);
       border-radius: inherit;
       opacity: 0;
       z-index: -2;

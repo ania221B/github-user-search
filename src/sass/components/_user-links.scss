@@ -53,7 +53,7 @@
   }
 
   svg path {
-    @include themify((fill, text-clr));
+    fill: var(--text-clr);
   }
 
   a {

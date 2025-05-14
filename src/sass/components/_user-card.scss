@@ -5,10 +5,8 @@
   grid-template-columns: 1fr;
   gap: 2rem 0;
   padding: $card-padding;
-  @include themify(
-    (background-color, profile-card-bg),
-    (box-shadow, box-shadow)
-  );
+  background-color: var(--profile-card-bg);
+  box-shadow: var(--box-shadow);
 
   .no-info,
   .no-info svg path {

@@ -78,32 +78,15 @@
   }
 }
 
-@mixin themed-gradient($key, $additional-gradients...) {
-  @if meta.type-of($themes) != 'map' {
-    @error "The variable '$themes' must be a map.";
-  }
-
-  @each $theme, $map in $themes {
-    @if meta.type-of($map) != 'map' {
-      @error "The theme '#{$theme}' must be a map but got #{type-of($map)}.";
-    }
-
-    @if not map.has-key($map, $key) {
-      @error "The key '#{$key}' is not in the '#{$theme}' theme. Available keys: #{map.keys($map)}.";
-    }
-
-    .theme-#{$theme} & {
-      background-image: linear-gradient(
-          90deg,
-          themed-color($theme, $key, 0),
-          themed-color($theme, $key, 0.05),
-          themed-color($theme, $key, 0.25),
-          themed-color($theme, $key, 0.5),
-          themed-color($theme, $key, 0.25),
-          themed-color($theme, $key, 0.05),
-          themed-color($theme, $key, 0)
-        ),
-        $additional-gradients;
-    }
-  }
+@mixin themed-gradient($clr, $direction: 90deg) {
+  background-image: linear-gradient(
+    $direction,
+    rgba($clr, 0),
+    rgba($clr, 0.05),
+    rgba($clr, 0.25),
+    rgba($clr, 0.5),
+    rgba($clr, 0.25),
+    rgba($clr, 0.05),
+    rgba($clr, 0)
+  );
 }

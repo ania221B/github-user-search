@@ -1,0 +1,9 @@
+@use '../abstracts/' as *;
+
+@each $theme, $colors in $themes {
+  .theme-#{$theme} {
+    @each $name, $value in $colors {
+      --#{$name}: #{$value};
+    }
+  }
+}

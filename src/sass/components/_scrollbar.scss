@@ -2,9 +2,7 @@
 
 * {
   scrollbar-width: thin;
-  @include themify(
-    (scrollbar-color, (scrollbar-thumb-clr, scrollbar-track-clr))
-  );
+  scrollbar-color: var(--scrollbar-thumb-clr) var(--scrollbar-track-clr);
 }
 
 ::-webkit-scrollbar {
@@ -12,11 +10,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @include themify((background-color, scrollbar-thumb-clr));
+  background-color: var(--scrollbar-thumb-clr);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-track {
-  @include themify((background-color, scrollbar-track-clr));
+  background-color: var(--scrollbar-track-clr);
   border-radius: 5px;
 }
 

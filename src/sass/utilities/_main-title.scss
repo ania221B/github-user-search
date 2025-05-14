@@ -3,5 +3,5 @@
 .main-title {
   font-size: fs(1000);
   font-weight: $fw-700;
-  @include themify((color, text-accent-clr));
+  color: var(--text-accent-clr);
 }

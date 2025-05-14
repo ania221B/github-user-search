@@ -12,12 +12,12 @@ body {
   font-family: $ff-primary;
   font-weight: $fw-400;
   font-size: fs(400);
+  background-color: var(--main-bg);
+  color: var(--text-clr);
 
   display: grid;
   align-items: center;
 }
-
-@include themify-body((background-color, main-bg), (color, text-clr));
 
 main {
   width: 100%;

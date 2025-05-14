@@ -46,7 +46,7 @@ function SearchBar () {
           </label>
           <input
             id='username'
-            type='text'
+            type='search'
             value={searchedUser}
             placeholder='Search GitHub username...'
             onChange={e => setSearchedUser(e.target.value)}

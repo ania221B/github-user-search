@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
-import Header from './Header'
-import SearchBar from './SearchBar'
-import User from './User'
+import { Header, SearchBar, User } from './components'
 
 import { useAppGlobalContext } from './context'
 
 function App () {
   const {
     user,
+    setUser,
+    searchedName,
     getUser,
     setPreferredTheme,
     loadBtnRef,
@@ -17,7 +17,6 @@ function App () {
 
   useEffect(() => {
     setPreferredTheme()
-    getUser()
   }, [])
 
   useEffect(() => {
@@ -52,7 +51,7 @@ function App () {
         <div className='container flow'>
           <Header></Header>
           <SearchBar></SearchBar>
-          <User user={user}></User>
+          <User></User>
         </div>
       </section>
     </main>

@@ -1,4 +1,4 @@
-import { useAppGlobalContext } from './context'
+import { useAppGlobalContext } from '../context'
 import SuggestionItem from './SuggestionItem'
 
 function SuggestionList ({ suggestions }) {

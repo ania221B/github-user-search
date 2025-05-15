@@ -1,4 +1,4 @@
-import { useAppGlobalContext } from './context'
+import { useAppGlobalContext } from '../context'
 
 function Header () {
   const { toggleTheme } = useAppGlobalContext()

@@ -1,4 +1,4 @@
-import { useAppGlobalContext } from './context'
+import { useAppGlobalContext } from '../context'
 import ItemSkeleton from './ItemSkeleton'
 
 function SuggestionItem ({ suggestion }) {

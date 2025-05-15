@@ -1,27 +1,49 @@
-import { useAppGlobalContext } from './context'
+import { useContext, useState } from 'react'
+import { useAppGlobalContext } from '../context'
 import SuggestionList from './SuggestionList'
+import { useUser } from '../hooks/useUser'
 
 function SearchBar () {
   const {
     isError,
-    isIssue,
     errorMessage,
-    searchedUser,
+    searchedName,
     suggestionList,
-    setSearchedUser,
+    setIsError,
+    setErrorMessage,
     setStartId,
-    submitSearch,
+    setSearchedName,
     getUserSuggestions,
     inputValueRef
   } = useAppGlobalContext()
-  const searchBarClasses = []
-  if (isError) {
-    searchBarClasses.push('error')
-  } else if (isIssue) {
-    searchBarClasses.push('error')
-  } else {
-    const indexOfError = searchBarClasses.indexOf('error')
-    searchBarClasses.splice(indexOfError - 1, 1)
+  const [input, setInput] = useState('')
+
+  const { isPending, error, friendlyError } = useUser(searchedName)
+
+  const searchBarClasses = isError ? ['error'] : []
+  // if (isError) {
+  //   searchBarClasses.push('error')
+  // } else {
+  //   const indexOfError = searchBarClasses.indexOf('error')
+  //   searchBarClasses.splice(indexOfError - 1, 1)
+  // }
+
+  /**
+   * Gets information about searched user
+   * @param {Object} event event object
+   */
+  function submitSearch (event) {
+    event.preventDefault()
+    if (!input.trim()) {
+      // setIsIssue(true)
+      setIsError(true)
+      setErrorMessage('Enter a name')
+    } else {
+      setIsError(false)
+      setErrorMessage('')
+      setSearchedName(input.trim())
+      setInput('')
+    }
   }
   return (
     <search>
@@ -47,21 +69,27 @@ function SearchBar () {
           <input
             id='username'
             type='search'
-            value={searchedUser}
+            value={input}
             placeholder='Search GitHub username...'
-            onChange={e => setSearchedUser(e.target.value)}
+            onChange={e => setInput(e.target.value)}
             onInput={e => {
-              setSearchedUser(e.target.value)
+              setInput(e.target.value)
               getUserSuggestions(e.target.value)
             }}
             onBlur={() => setStartId(0)}
             ref={inputValueRef}
           />
-          {isError && <div className='info'>{errorMessage}</div>}
-          {isIssue && <div className='info'>{errorMessage}</div>}
-          <button type='submit' className='button search-button'>
-            Search
-          </button>
+          {error && <div className='info'>{friendlyError}</div>}
+
+          {isPending ? (
+            <button type='submit' className='button search-button' disabled>
+              Searching...
+            </button>
+          ) : (
+            <button type='submit' className='button search-button'>
+              Search
+            </button>
+          )}
           <SuggestionList suggestions={suggestionList}></SuggestionList>
         </div>
       </form>

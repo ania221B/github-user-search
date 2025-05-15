@@ -8,20 +8,19 @@ function AppContext ({ children }) {
   const [isDarkMode, setIsDarkMode] = useState(
     window.matchMedia('(prefers-color-scheme: dark)').matches
   )
-  const [isLoading, setIsLoading] = useState(true)
   const [isItemLoading, setIsItemLoading] = useState(true)
+  // const [isIssue, setIsIssue] = useState(false)
   const [isError, setIsError] = useState(false)
-  const [isIssue, setIsIssue] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [startId, setStartId] = useState(0)
-  const [searchedUser, setSearchedUser] = useState('')
-  const [user, setUser] = useState({})
+
+  const [searchedName, setSearchedName] = useState('octocat')
   const [suggestionList, setSuggestionList] = useState([])
   const [selectedUser, setSelectedUser] = useState(null)
   const loadBtnRef = useRef(null)
   const inputValueRef = useRef(null)
 
-  const url = 'https://api.github.com'
+  // const url = 'https://api.github.com'
 
   /**
    * Formats the date
@@ -49,73 +48,6 @@ function AppContext ({ children }) {
     const day = unformattedDate.getDate()
 
     return `${day} ${month} ${year}`
-  }
-
-  /**
-   * Fetches user info and displays their profile
-   * @param {String} searchedName user name entered in the search bar,
-   */
-  async function getUser (searchedName = 'octocat') {
-    setIsLoading(true)
-    setIsError(false)
-    try {
-      const response = await axios.get(`${url}/users/${searchedName}`, {
-        headers: {
-          Accept: 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2022-11-28'
-        }
-      })
-      const githubUser = response.data
-
-      if (!githubUser) {
-        setIsLoading(false)
-        setIsError(true)
-        return
-      }
-
-      setUser({
-        image: githubUser.avatar_url,
-        name: githubUser.name,
-        username: githubUser.login,
-        joinDate: formatDate(githubUser.created_at),
-        bio: githubUser.bio,
-        repos: githubUser.public_repos,
-        followers: githubUser.followers,
-        following: githubUser.following,
-        location: githubUser.location,
-        blog: githubUser.blog,
-        twitter: githubUser.twitter_username,
-        company: githubUser.company
-      })
-    } catch (error) {
-      setIsLoading(false)
-      setIsError(true)
-      if (error.response.status === 404) {
-        setErrorMessage('No results')
-      } else if (error.response.status === 403) {
-        setErrorMessage(`Limit reached. Try later`)
-      } else {
-        setErrorMessage(`There's an error`)
-      }
-    }
-    setIsLoading(false)
-  }
-
-  /**
-   * Gets information about searched user
-   * @param {Object} event event object
-   */
-  function submitSearch (event) {
-    event.preventDefault()
-    if (!searchedUser) {
-      setIsIssue(true)
-      setErrorMessage('Enter a name')
-    } else {
-      setIsIssue(false)
-      setErrorMessage('')
-      getUser(searchedUser)
-      setSearchedUser('')
-    }
   }
 
   /**
@@ -255,20 +187,15 @@ function AppContext ({ children }) {
   return (
     <AppGlobalContext.Provider
       value={{
-        isLoading,
+        formatDate,
         isItemLoading,
         isError,
-        isIssue,
         setIsError,
-        setIsIssue,
         errorMessage,
         setErrorMessage,
-        searchedUser,
-        setSearchedUser,
-        user,
-        setUser,
-        getUser,
-        submitSearch,
+        searchedName,
+        setSearchedName,
+
         getUserSuggestions,
         suggestionList,
         setSuggestionList,

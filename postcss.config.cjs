@@ -8,6 +8,7 @@ module.exports = {
       ? [
           purgecss({
             content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+            safelist: ['flow'],
             defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
           })
         ]

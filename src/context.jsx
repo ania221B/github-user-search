@@ -30,18 +30,18 @@ function AppContext ({ children }) {
    */
   function formatDate (date) {
     const monthsInAYear = [
-      { longname: 'January', shortName: 'Jan' },
-      { longname: 'February', shortName: 'Feb' },
-      { longname: 'March', shortName: 'Mar' },
-      { longname: 'April', shortName: 'Apr' },
-      { longname: 'May', shortName: 'May' },
-      { longname: 'June', shortName: 'Jun' },
-      { longname: 'July', shortName: 'Jul' },
-      { longname: 'August', shortName: 'Aug' },
-      { longname: 'Spetember', shortName: 'Sep' },
-      { longname: 'October', shortName: 'Oct' },
-      { longname: 'Novermber', shortName: 'Nov' },
-      { longname: 'December', shortName: 'Dec' }
+      { longName: 'January', shortName: 'Jan' },
+      { longName: 'February', shortName: 'Feb' },
+      { longName: 'March', shortName: 'Mar' },
+      { longName: 'April', shortName: 'Apr' },
+      { longName: 'May', shortName: 'May' },
+      { longName: 'June', shortName: 'Jun' },
+      { longName: 'July', shortName: 'Jul' },
+      { longName: 'August', shortName: 'Aug' },
+      { longName: 'September', shortName: 'Sep' },
+      { longName: 'October', shortName: 'Oct' },
+      { longName: 'November', shortName: 'Nov' },
+      { longName: 'December', shortName: 'Dec' }
     ]
     const unformattedDate = new Date(date)
     const year = unformattedDate.getFullYear()
